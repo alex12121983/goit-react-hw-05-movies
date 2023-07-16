@@ -1,0 +1,15 @@
+.movies__list {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* gap: 5px; */
+
+    /* @media screen and (min-width: 768px) {
+      gap: 32px;
+    }
+    @media screen and (min-width: 1280px) {
+      gap: 16px;
+    } */
+}

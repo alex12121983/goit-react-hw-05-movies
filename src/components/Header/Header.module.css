@@ -1,0 +1,141 @@
+.header {
+    position: relative;
+    display: block;
+    overflow: visible;
+    padding: 16px 32px;
+    border-radius: 15px;
+}
+
+.header__nav {
+    position: relative;
+    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+.header__nav-link {
+    color: #FFFFFF;
+    border-radius: 100px;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #640606;
+}
+
+.logo-main {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.logo {
+    display: block;
+    overflow: hidden;
+    /* background-image: url('../../images/header_logo.png');  */
+}
+
+
+.logo-text {
+    display: block;
+    overflow: hidden;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+}
+        
+@media screen and (min-width: 320px) {
+    .header {
+        background-image: url('../../images/header_background_image_red_mob.png');
+    }
+    .header__nav-link {
+        padding: 10px 26px;
+    }
+    .logo-main {
+        margin-top: 354px;
+    }
+    .logo {
+        width: 32px;
+        height: 32px;
+    }
+    .logo-text {
+        font-size: 32px; 
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        background-image: url('../../images/header_background_image_red_tablet.png');
+    }
+    .header__nav-link {
+        padding: 12px 24px;
+    }
+    .logo-main {
+        margin-top: 105px;
+    }
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    .logo-text {
+        font-size: 40px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .header {
+        background-image: url('../../images/header_background_image_red_desctop.png');
+    }
+    .header__nav-link {
+        padding: 14px 32px;
+    }
+    .logo-main {
+        margin-top: 151px;
+    }
+    .logo {
+        width: 59px;
+        height: 59px;
+    }
+    .logo-text {
+        font-size: 64px;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .header {
+        background-image: url('../../images/header_background_image_red_desctop.png');
+    }
+    .header__nav-link {
+        padding: 14px 32px;
+    }
+    .logo-main {
+        margin-top: 151px;
+    }
+    .logo {
+        width: 59px;
+        height: 59px;
+    }
+    .logo-text {
+        font-size: 64px;
+    }
+} 
