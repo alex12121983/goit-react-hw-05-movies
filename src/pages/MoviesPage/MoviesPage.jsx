@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import Notiflix from 'notiflix';
 
@@ -14,7 +14,6 @@ const MoviesPage = () => {
     const searchText = searchParams.get('query')
     const [isLoading, setIsLoading] = useState(false)
 	const [movies, setMovies] = useState(null)
-    const location = useLocation();
 
     const handleSearch = (value) => {
         const text = value.trim() 
