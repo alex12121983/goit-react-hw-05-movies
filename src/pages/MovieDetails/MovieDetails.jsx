@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react'
-import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
 import Notiflix from 'notiflix'
 
 import { getMovieDetails } from '../../api/movies'

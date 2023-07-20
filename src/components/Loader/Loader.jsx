@@ -1,6 +1,5 @@
 import React from 'react'
 import  { TailSpin }  from  'react-loader-spinner'
-import PropTypes from 'prop-types'
 import css from './Loader.module.css'
 
 const Loader = () => {
