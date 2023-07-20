@@ -10,14 +10,16 @@ import CastList from 'components/CastList/CastList';
 const CastPage = () => {
     const [credits, setCredits] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState(null)
     const { movieId } = useParams()
 	
     useEffect(() => {
         const getData = async () => {
 			try {
 				setIsLoading(true)
+				
 				const {cast} = await getMovieCredits(movieId)
-				console.log('cast :>> ', cast)
+
 				if ( cast.length === 0 ) {
 					Notiflix.Notify.failure(
 						'Sorry, there are no information about actors. Please try again later.',
@@ -28,10 +30,11 @@ const CastPage = () => {
 						Notiflix.Notify.success(
 							`Hooray! We found a lot of infomation about ${cast.length} actors.`,
 						  )
-						// console.log('results :>> ', results)
+						// console.log('cast :>> ', cast)
 						setCredits(cast)
 					}
 			} catch (error) {
+				setError(error.message)
 				console.log('error :>> ', error)
 			} finally {
 				setIsLoading(false)
@@ -43,9 +46,14 @@ const CastPage = () => {
     return ( 
 		<>
 			{isLoading && <Loader />}
-			<CastList credits={credits}/>
+			{error !== null && (
+				<p className="c-error">
+					Oops, some error occured. Please, try again later. Error: {error}
+				</p>
+			)}
+			{credits && <CastList credits={credits}/>}
 		</>  
 	);
 }
  
-export default CastPage;
+export default CastPage 

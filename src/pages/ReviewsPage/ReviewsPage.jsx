@@ -10,6 +10,7 @@ import Loader from '../../components/Loader/Loader'
 const ReviewsPage = () => {
     const [reviews, setReviews] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState(null)
     const { movieId } = useParams()
     
 	useEffect(() => {
@@ -17,7 +18,6 @@ const ReviewsPage = () => {
 			try {
 				setIsLoading(true)
 				const { results } = await getMovieReviews(movieId)
-				console.log('results :>> ', results)
 				
 				if ( results.length === 0 ) {
 					Notiflix.Notify.failure(
@@ -33,6 +33,7 @@ const ReviewsPage = () => {
 						setReviews(results)
 					}
 			} catch (error) {
+				setError(error.message)
 				console.log('error :>> ', error)
 			} finally {
 				setIsLoading(false)
@@ -43,7 +44,12 @@ const ReviewsPage = () => {
     return ( 
         <>
 		    {isLoading && <Loader />}
-			<ReviewList reviews={reviews}/>
+			{error !== null && (
+				<p className="c-error">
+					Oops, some error occured. Please, try again later. Error: {error}
+				</p>
+			)}
+			{reviews && <ReviewList reviews={reviews}/>}
 		</>  
     );
 }

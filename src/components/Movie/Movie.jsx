@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 import css from './Movie.module.css'
 
 const Movie = ({ movie }) => {
@@ -91,4 +92,24 @@ const Movie = ({ movie }) => {
      );
 }
  
-export default Movie;
+export default Movie
+
+Movie.propTypes = {
+	movie: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            poster_path: PropTypes.string,
+            release_date: PropTypes.string.isRequired,
+			overview: PropTypes.string.isRequired,
+		  	id: PropTypes.number.isRequired,
+			vote_average: PropTypes.number.isRequired,
+			vote_count: PropTypes.number.isRequired,
+			popularity: PropTypes.number.isRequired,
+			original_title: PropTypes.string.isRequired,
+			genres: PropTypes.arrayOf(
+				PropTypes.shape({
+				  id: PropTypes.number.isRequired,
+				  name: PropTypes.string.isRequired,
+				})
+			  ).isRequired,
+		}).isRequired,
+}

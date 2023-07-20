@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Notiflix from 'notiflix'
 
@@ -14,21 +14,22 @@ const MovieDetails = () => {
 	const { movieId } = useParams()
 	const [isLoading, setIsLoading] = useState(false)
 	const location = useLocation()
-	const navigate = useNavigate()
+	const [error, setError] = useState(null)
 
 	useEffect(() => {
 		const getData = async () => {
 			try {
 				setIsLoading(true)
+
 				const data = await getMovieDetails(movieId)
 					Notiflix.Notify.success(
 						`Hooray! We found info about this film.`,
 					  )
 					setMovie(data)
-				// console.log('data :>> ', data)
 				
 			} catch (error) {
-				console.log(error)
+				setError(error.message)
+				console.log('error :>> ', error)
 			} finally {
 				setIsLoading(false)
 			}
@@ -36,27 +37,37 @@ const MovieDetails = () => {
 		getData()
 	}, [movieId])
 
-	const handleClick = () => {
-		navigate(location.state ? location.state : '/movies')
-	}
+	const goBack = useRef( location?.state?.from ?? '/')
 
 	return (
 		movie && (
 			<>
 				{isLoading && <Loader />}
-				<button
-						onClick={handleClick}
-						className={css['back-link']}
-				>
-					Back
-				</button>
-				<Movie movie={movie} />
+				<Link to={goBack.current} className={css['back-link']}>
+                    Back
+                </Link>
+				{error !== null && (
+					<p className="c-error">
+					Oops, some error occured. Please, try again later. Error: {error}
+					</p>
+				)}
+				{movie &&  <Movie movie={movie} />}
 				<ul className={css["additional-info"]}>
-					<li className={css["additional-info__item"]}>
-                        <Link to="cast">Cast</Link>
+					<li>
+                        <Link 
+							to="cast" 
+							className={css["additional-info__item"]}
+						>
+							Cast
+						</Link>
                     </li>
-					<li className={css["additional-info__item"]}>
-						<Link to="reviews">Reviews</Link>
+					<li>
+						<Link 
+							to="reviews" 
+							className={css["additional-info__item"]}
+						>
+							Reviews
+						</Link>
                     </li>
 				</ul>
 				<Suspense>

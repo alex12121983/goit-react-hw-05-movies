@@ -50,7 +50,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-style: solid;
-    /* background: $accent-text-cl;*/
     box-sizing: border-box;
     width: calc(55px * 2);
     border-width: 5px;

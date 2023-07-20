@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import css from './CastItem.module.css'
 
 const CastItem = ({credit}) => {
@@ -7,21 +8,7 @@ const CastItem = ({credit}) => {
 
     return ( 
 	<>
-		{/* <li key={id} className="card">
-			<img 
-				src={`https://image.tmdb.org/t/p/w500${profile_path}`} 
-				className="card-img-top" 
-				alt={name} 
-			/>
-			<div className="card-body">
-				<h4 className="card-title">
-						{name}
-				</h4>
-				<h5>popularity</h5>
-				<p className="card-text">{popularity}</p>
-			</div>
-    	</li>  */}
-		<li key={id} id={id} className={css['movies__card']}>
+		<li key={id} className={css['movies__card']}>
 				<img
 					className={css['movies__card-photo']}
 					src={
@@ -43,4 +30,14 @@ const CastItem = ({credit}) => {
     );
 }
  
-export default CastItem;
+export default CastItem
+
+CastItem.propTypes = {
+    credit:	PropTypes.shape({
+		  id: PropTypes.number.isRequired,
+		  name: PropTypes.string.isRequired,
+		  profile_path: PropTypes.string,
+		  popularity: PropTypes.number.isRequired,
+		  character: PropTypes.string.isRequired,
+		}).isRequired,
+}

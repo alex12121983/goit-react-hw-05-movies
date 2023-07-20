@@ -2,11 +2,9 @@
     position: relative;
     display: block;
     overflow: hidden;
-    /* height: 316px; */
     margin-top: 32px;
     margin-left: auto;
     margin-right: auto;
-    /* background-image: url('../../images/header_background_image_yellow.png'); */
 }
     @media screen and (min-width: 320px) {
     .container {  

@@ -14,6 +14,7 @@ const MoviesPage = () => {
     const searchText = searchParams.get('query')
     const [isLoading, setIsLoading] = useState(false)
 	const [movies, setMovies] = useState(null)
+    const [error, setError] = useState(null)
 
     const handleSearch = (value) => {
         const text = value.trim() 
@@ -26,10 +27,11 @@ const MoviesPage = () => {
        const getData = async () => {
         try {
             setIsLoading(true)
-            if(!searchText) {
-                return;
-            }
+
+            if(!searchText) return;
+            
             const {results} = await getSearchMovies(searchText)
+
             if ( results.length === 0 ) {
                 Notiflix.Notify.failure(
                     'Sorry, there are no movies matching your search query. Please try again.',
@@ -45,7 +47,8 @@ const MoviesPage = () => {
                 }
             
         } catch (error) {
-            console.log('error :>> ', error)
+            setError(error.message)
+			console.log('error :>> ', error)
         } finally {
 			setIsLoading(false)
 		}
@@ -57,9 +60,14 @@ const MoviesPage = () => {
     <>
         <SearchMovie handleSearch={handleSearch}/>
         {isLoading && <Loader />}
-        <MoviesList movies={movies}/>
+        {error !== null && (
+			<p className="c-error">
+				Oops, some error occured. Please, try again later. Error: {error}
+			</p>
+		)}
+        {movies && <MoviesList movies={movies}/>}
     </> 
     );
 }
  
-export default MoviesPage;
+export default MoviesPage

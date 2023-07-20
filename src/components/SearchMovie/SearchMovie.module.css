@@ -19,8 +19,14 @@
 }
 
 .input {
-    border: none;
-    width: 80%;
+    width: 75%;
+    padding: 4px;
+    outline: none;
+}
+
+.input:focus {
+    
+    border: 1px solid blue;
 }
 
 .input_button {
